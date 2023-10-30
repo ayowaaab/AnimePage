@@ -1,5 +1,5 @@
 import { Grid, GridItem, Heading } from "@chakra-ui/react";
-import Nav from "./component/Nav";
+import Nav from "./component/navComponent/Nav";
 import Main from "./component/mainComponent/Main";
 import Article from "./component/articleComponent/Article";
 

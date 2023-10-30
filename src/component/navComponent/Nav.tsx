@@ -10,9 +10,10 @@ import {
   Link,
   Divider,
 } from "@chakra-ui/react";
-import logo from "../assets/Logo.svg";
+import logo from "../../assets/Logo.svg";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { FaFacebook, FaGithub, FaInstagram } from "react-icons/fa";
+import Contact from "./Contact";
 
 function Nav() {
   const { toggleColorMode } = useColorMode();
@@ -41,10 +42,10 @@ function Nav() {
         </HStack>
         <HStack gap={10}>
           <HStack>
-            <Button>My Works</Button>
-            <Button>Experiance</Button>
-            <Button>Education</Button>
-            <Button>Contanct</Button>
+            <Button>Anime</Button>
+            <Button>Manga</Button>
+            <Button>Products</Button>
+            <Contact />
           </HStack>
           <HStack>
             <Button
