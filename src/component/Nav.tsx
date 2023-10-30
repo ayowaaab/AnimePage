@@ -8,6 +8,7 @@ import {
   Icon,
   Text,
   Link,
+  Divider,
 } from "@chakra-ui/react";
 import logo from "../assets/Logo.svg";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
@@ -28,11 +29,11 @@ function Nav() {
         gap={5}
       >
         <HStack gap={20}>
-          <HStack>
-            <Image src={logo} w={"50px"} />
-            <Text fontSize={'2xl'} as={'b'} color={'teal.700'}>Hope</Text>
+          <HStack >
+            <Image filter={ flag?"invert(40%) sepia(61%) saturate(2269%) hue-rotate(165deg) brightness(101%) contrast(101%)":""} src={logo} w={"50px"} />
+            <Text fontSize={'2xl'} as={'b'} color={flag?'cyan.400':'green.700'}>Hope</Text>
           </HStack>
-          <HStack gap={5}>
+          <HStack gap={10} >
             <Link opacity={'.5'} _hover={{opacity:'1'}} target="_blank" href='https://github.com/ayowaaab'><Icon cursor={"pointer"} as={FaGithub} boxSize={7} /></Link>
             <Link opacity={'.5'} _hover={{opacity:'1'}} target="_blank" href='https://www.facebook.com/ayoub.dahmen.87'><Icon cursor={"pointer"} as={FaFacebook} boxSize={7} /></Link>
             <Link opacity={'.5'} _hover={{opacity:'1'}} target="_blank" href='https://www.instagram.com/ayoub__dahmen/'><Icon cursor={"pointer"} as={FaInstagram} boxSize={7} /></Link>
@@ -58,7 +59,7 @@ function Nav() {
           </HStack>
         </HStack>
       </Stack>
-      <hr />
+      <Divider />
     </>
   );
 }
