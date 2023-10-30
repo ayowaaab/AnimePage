@@ -1,13 +1,8 @@
-import {
-  Button,
-  HStack,
-  Image,
-  Stack,
-  useBoolean,
-  useColorMode,
-} from "@chakra-ui/react";
+import {Button,HStack,Image,Stack,useBoolean,useColorMode} from "@chakra-ui/react";
 import logo from "../assets/Logo.svg";
 import { MoonIcon,SunIcon } from "@chakra-ui/icons";
+// import { MdSettings } from 'react-icons/md';
+
 
 function Nav() {
   const { toggleColorMode } = useColorMode();
@@ -16,7 +11,7 @@ function Nav() {
   return (
     <>
       <Stack
-        padding={".25rem"}
+        padding={"1rem"}
         justifyContent={"space-between"}
         paddingX={5}
         direction={"row"}
@@ -38,11 +33,13 @@ function Nav() {
             <Button onClick={() => {setFlag.toggle();toggleColorMode()}} >
               {flag?<MoonIcon />:<SunIcon />}
             </Button>
-            <Button>Sponsor</Button>
+            {/* <Icon as={MdSettings} /> */}
+            <Button>Sponsor ❤</Button>
           </HStack>
      
         </HStack>
       </Stack>
+      <hr />
     </>
   );
 }
