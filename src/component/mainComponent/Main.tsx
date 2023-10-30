@@ -1,15 +1,17 @@
 import { Grid } from "@chakra-ui/react";
 import AnimeCard from "./AnimeCard";
-
-function Main() {
+interface Props{
+  img:string[]
+}
+function Main({img}:Props) {
   return (
     <>
-<Grid rowGap={5}>
+<Grid gap={5}>
   
-    <AnimeCard />
-    <AnimeCard />
-    <AnimeCard />
-    <AnimeCard />
+    <AnimeCard img = {img[0]} />
+    <AnimeCard img = {img[1]} />
+    <AnimeCard img = {img[2]} />
+    <AnimeCard img = {img[3]} />
    
 </Grid>
     </>

@@ -1,11 +1,16 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { HStack, Heading, Text } from "@chakra-ui/react";
 
-function Article() {
+interface Props{
+  heading:string;
+  icon : string;
+}
+
+function Article({heading,icon}:Props) {
   return (
     <>
-        <HStack _hover={{ textDecoration: "underline" }} cursor={"pointer"}>
-          <Image w={"40px"} objectFit={"cover"} src="img/satoru.jpeg" />
-          <Text fontSize={"xl"}>Love</Text>
+        <HStack  cursor={"pointer"}>
+          <Heading fontSize={"2xl"}>{icon}</Heading>
+          <Text _hover={{ textDecoration: "underline" }} width={"250px"} fontSize={"xl"}>{heading}</Text>
         </HStack>
     </>
   );

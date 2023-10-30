@@ -1,3 +1,4 @@
+import { ViewIcon } from "@chakra-ui/icons";
 import {
   Card,
   Image,
@@ -9,18 +10,26 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-function AnimeCard() {
+interface Props{
+  img:string
+}
+
+function AnimeCard({img}:Props) {
   return (
     <>
       <Card
         direction={{ base: "column", sm: "row" }}
         overflow="hidden"
         variant="outline"
+        shadow={"lg"}
+        _hover={{transform:'scale(1.02)'}}
+        transition={'.3s'}
       >
         <Image
           objectFit="cover"
-          maxW={{ base: "100%", sm: "200px" }}
-          src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
+          w={"200px"}
+          maxH={{ base: "100%", sm: "200px" }}
+          src={ "img/"+img}
           alt="Caffe Latte"
         />
 
@@ -35,8 +44,8 @@ function AnimeCard() {
           </CardBody>
 
           <CardFooter>
-            <Button variant="solid" colorScheme="blue">
-              Buy Latte
+            <Button colorScheme="blue" width={"200px"} rightIcon={<ViewIcon />}>
+              Watch
             </Button>
           </CardFooter>
         </Stack>
