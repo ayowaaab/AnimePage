@@ -1,17 +1,15 @@
 import {
-Alert,
-AlertIcon,
-AlertTitle,
-ListItem,
-OrderedList,
-Tabs,
-TabList,
-TabPanels,
-TabPanel,
-VStack,
-HStack,
-Show,
-Tab,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  Tabs,
+  TabList,
+  TabPanels,
+  TabPanel,
+  VStack,
+  HStack,
+  Show,
+  Tab,
 } from "@chakra-ui/react";
 
 import { useState, useEffect } from "react";
@@ -33,7 +31,7 @@ function AllArticles() {
   const [error, setError] = useState("");
   useEffect(() => {
     apiClient
-      .get<fetchGenreResponse>("/games")
+      .get<fetchGenreResponse>("/genres")
       .then((res) => setGenre(res.data.results))
       .catch((err) => setError(err.message));
   });
@@ -48,13 +46,9 @@ function AllArticles() {
               <AlertIcon /> <AlertTitle>{error}</AlertTitle>
             </Alert>
           )}
-          <OrderedList>
-            {genre.map((el) => (
-              <ListItem key={el.id}>
-                <Article key={el.id} heading={el.name} />
-              </ListItem>
-            ))}
-          </OrderedList>
+          {genre.map((el) => (
+            <Article key={el.id} heading={el.name} img={el.image_background} />
+          ))}
         </Show>
         <Show below="md">
           <VStack>
@@ -64,7 +58,7 @@ function AllArticles() {
                   <TabPanel>
                     <HStack justify={"center"}>
                       {genre.slice(i * 4, (i + 1) * 4).map((element) => (
-                        <Article key={element.id} heading={element.name} />
+                        <Article key={element.id} heading={element.name} img={element.image_background} />
                       ))}
                     </HStack>
                   </TabPanel>

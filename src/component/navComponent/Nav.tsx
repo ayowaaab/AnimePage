@@ -28,8 +28,8 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 
 
 function Nav() {
-  const { toggleColorMode } = useColorMode();
-  const [flag, setFlag] = useBoolean();
+  const { toggleColorMode,colorMode } = useColorMode();
+  const [flag, setFlag] = useBoolean(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -47,7 +47,7 @@ function Nav() {
             <HStack>
               <Image
                 filter={
-                  flag
+                  colorMode === 'dark'
                     ? "invert(40%) sepia(61%) saturate(2269%) hue-rotate(165deg) brightness(101%) contrast(101%)"
                     : ""
                 }
@@ -57,7 +57,7 @@ function Nav() {
               <Text
                 fontSize={"2xl"}
                 as={"b"}
-                color={flag ? "cyan.400" : "green.700"}
+                color={colorMode === 'dark' ? "cyan.400" : "green.700"}
               >
                 Hope
               </Text>
@@ -125,14 +125,14 @@ function Nav() {
                 <HStack>
                   <Image
                     filter={
-                      flag
+                      colorMode === 'dark'
                         ? "invert(40%) sepia(61%) saturate(2269%) hue-rotate(165deg) brightness(101%) contrast(101%)"
                         : ""
                     }
                     src={logo}
                     w={"50px"}
                   />
-                  <Text color={flag ? "cyan.400" : "green.700"}>Hope</Text>
+                  <Text color={colorMode === 'dark' ? "cyan.400" : "green.700"}>Hope</Text>
                 </HStack>
               </DrawerHeader>
 
@@ -191,7 +191,7 @@ function Nav() {
               toggleColorMode();
             }}
           >
-            {flag ? <MoonIcon /> : <SunIcon />}
+            {colorMode === 'dark' ? <MoonIcon /> : <SunIcon />}
           </Button>
         </HStack>
       </Show>
