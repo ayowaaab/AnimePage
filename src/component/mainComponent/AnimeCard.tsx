@@ -21,15 +21,15 @@ function AnimeCard({img}:Props) {
         direction={{ base: "column", sm: "row" }}
         overflow="hidden"
         variant="outline"
-        shadow={"lg"}
+        shadow={"md"}
         _hover={{transform:'scale(1.02)'}}
         transition={'.3s'}
       >
         <Image
           objectFit="cover"
-          w={"200px"}
-          maxH={{ base: "100%", sm: "200px" }}
-          src={ "img/"+img}
+          w={{base:"250px",md:"200px",xl:"250px"}}
+          h={{base:"250px",md:"200px",xl:"250px"}}
+          src={ "img/" + img}
           alt="Caffe Latte"
         />
 
@@ -44,11 +44,12 @@ function AnimeCard({img}:Props) {
           </CardBody>
 
           <CardFooter>
-            <Button colorScheme="blue" width={"200px"} rightIcon={<ViewIcon />}>
+            <Button colorScheme="blue" width={"200px"} m={{base:'0 auto',md:'auto 0',xl:'auto 0'}} rightIcon={<ViewIcon />}>
               Watch
             </Button>
           </CardFooter>
         </Stack>
+        
       </Card>
     </>
   );

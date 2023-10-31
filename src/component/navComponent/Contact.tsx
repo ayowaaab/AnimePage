@@ -21,7 +21,7 @@ function Contact() {
 
   return (
     <>
-      <Button colorScheme="twitter" onClick={onOpen}>
+      <Button size={{base:'lg',md:'md',xl:'md'}} colorScheme="twitter" onClick={onOpen}>
         Contact
       </Button>
 
