@@ -1,4 +1,9 @@
-import { Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
+import {
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+} from "@chakra-ui/react";
 import Nav from "./component/navComponent/Nav";
 import Main from "./component/mainComponent/Main";
 import "./App.css";
@@ -11,15 +16,6 @@ function App() {
     "satoru.jpeg",
     "gojo-satoru-jjk.webp",
     "AnimeBg.jpeg",
-  ];
-  const articlesArr = [
-    {id : 1, icon: "🏈", heading: "Sports" },
-    {id : 2, icon: "💖", heading: "Love" },
-    {id : 3, icon: "🈶", heading: "Anime" },
-    {id : 4, icon: "👼", heading: "Children" },
-    {id : 5, icon: "✅", heading: "Sports" },
-    {id : 6, icon: "🤷‍♀️", heading: "Love" },
-    {id : 7, icon: "🤞", heading: "Anime" },
   ];
 
   return (
@@ -41,7 +37,7 @@ function App() {
             gap={5}
             padding={5}
           >
-            <AllArticles articleArray={articlesArr} />
+            <AllArticles />
           </Flex>
         </GridItem>
         <GridItem colSpan={{ base: 4, md: 3, xl: 3 }} mx={3}>
