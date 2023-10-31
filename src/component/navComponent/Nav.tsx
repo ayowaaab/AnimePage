@@ -25,6 +25,8 @@ import { FaFacebook, FaGithub, FaInstagram } from "react-icons/fa";
 import Contact from "./Contact";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
+
+
 function Nav() {
   const { toggleColorMode } = useColorMode();
   const [flag, setFlag] = useBoolean();
@@ -155,7 +157,7 @@ function Nav() {
                 >
                   <Link
                     opacity={".5"}
-                    _hover={{ opacity: "1" }}
+                    _hover={{ opacity: "1",filter:"invert(40%) sepia(61%) saturate(2269%) hue-rotate(165deg) brightness(101%) contrast(101%)" }}
                     target="_blank"
                     href="https://github.com/ayowaaab"
                   >
@@ -167,7 +169,7 @@ function Nav() {
                     target="_blank"
                     href="https://www.facebook.com/ayoub.dahmen.87"
                   >
-                    <Icon cursor={"pointer"} as={FaFacebook} boxSize={7} />
+                    <Icon cursor={"pointer"} as={FaFacebook} boxSize={7} className="faicon" />
                   </Link>
                   <Link
                     opacity={".5"}

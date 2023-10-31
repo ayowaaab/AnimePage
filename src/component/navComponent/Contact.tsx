@@ -1,13 +1,15 @@
 import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
   Button,
-  Grid,
+  FormControl,
+  FormLabel,
   Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Textarea,
   useDisclosure,
   useToast,
@@ -16,58 +18,81 @@ import React from "react";
 
 function Contact() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
   const toast = useToast();
-  const cancelRef = React.useRef(null);
 
   return (
     <>
-      <Button size={{base:'lg',md:'md',xl:'md'}} colorScheme="twitter" onClick={onOpen}>
+      <Button
+        size={{ base: "lg", md: "md", xl: "md" }}
+        colorScheme="twitter"
+        onClick={onOpen}
+      >
         Contact
       </Button>
 
-      <AlertDialog
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
         isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
         onClose={onClose}
       >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="2xl" fontWeight="bold">
-              Write you Message
-            </AlertDialogHeader>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Contact</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>First name</FormLabel>
+              <Input
+                name="firstName"
+                ref={initialRef}
+                placeholder="First name"
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Last name</FormLabel>
+              <Input
+                name="lastName"
+                ref={initialRef}
+                placeholder="First name"
+              />
+            </FormControl>
 
-            <AlertDialogBody>
-              <Grid gap={3} fontSize={"80px"}>
-                <Input placeholder="Your Name" />
-                <Input placeholder="Your Email" />
-                <Textarea placeholder="Here you write your Message" />
-              </Grid>
-            </AlertDialogBody>
+            <FormControl mt={4}>
+              <FormLabel>Email</FormLabel>
+              <Input name="email" placeholder="Email" />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Message</FormLabel>
+              <Textarea name="msg" placeholder="Write Here..." />
+            </FormControl>
+          </ModalBody>
 
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button
-                colorScheme="blue"
-                onClick={() => {
-                  onClose();
-                  toast({
-                    title: 'Message Sent.',
-                    description: "Thank you for your Time.",
-                    status: 'success',
-                    duration: 3000,
-                    isClosable: true,
-                  })
-                }}
-                ml={3}
-              >
-                Send
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
+          <ModalFooter>
+            <Button
+              type="submit"
+              colorScheme="blue"
+              mr={3}
+              onClick={() => {
+                onClose();
+                toast({
+                  title: 'Message Send.',
+                  description: "We'll Respond you soon ❤",
+                  status: 'success',
+                  duration: 3000,
+                  isClosable: true,
+                });
+              }}
+            >
+              Send
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }
