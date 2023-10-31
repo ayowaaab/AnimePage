@@ -9,7 +9,7 @@ function Article({heading,icon}:Props) {
   return (
     <>
         <HStack  cursor={"pointer"}>
-          <Heading fontSize={{base:"sm",md:"xl",xl:"xl"}}>{icon}</Heading>
+          <Heading fontSize={{base:"sm",sm:'xl',md:"xl",xl:"xl"}}>{icon}</Heading>
           <Text _hover={{ textDecoration: "underline" }} fontSize={{base:"sm",md:"xl",xl:"xl"}}>{heading}</Text>
         </HStack>
     </>
