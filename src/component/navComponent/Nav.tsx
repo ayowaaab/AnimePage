@@ -113,7 +113,7 @@ function Nav() {
 
       <Show below="md">
         <HStack justifyContent={"space-between"}>
-          <Button size={'lg'} onClick={onOpen}>
+          <Button size={'lg'} onClick={onOpen} borderRadius={'0 0 15px 0'}>
             <HamburgerIcon />
           </Button>
           <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
@@ -185,6 +185,7 @@ function Nav() {
           </Drawer>
           <Button
             size={"lg"}
+            borderRadius={'0 0 0 15px'}
             onClick={() => {
               setFlag.toggle();
               toggleColorMode();
