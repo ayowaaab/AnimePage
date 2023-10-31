@@ -27,7 +27,7 @@ function AnimeCard({img}:Props) {
       >
         <Image
           objectFit="cover"
-          w={{base:"250px",md:"200px",xl:"250px"}}
+          w={{base:"100%",md:"200px",xl:"250px"}}
           h={{base:"250px",md:"200px",xl:"250px"}}
           src={ "img/" + img}
           alt="Caffe Latte"

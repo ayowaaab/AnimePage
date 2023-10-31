@@ -130,7 +130,7 @@ function Nav() {
                     src={logo}
                     w={"50px"}
                   />
-                  <Text color={flag ? "cyan.400" : "green.700"}>Home</Text>
+                  <Text color={flag ? "cyan.400" : "green.700"}>Hope</Text>
                 </HStack>
               </DrawerHeader>
 

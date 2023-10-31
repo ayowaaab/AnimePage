@@ -3,6 +3,7 @@ import Nav from "./component/navComponent/Nav";
 import Main from "./component/mainComponent/Main";
 import Article from "./component/articleComponent/Article";
 import "./App.css";
+import Footer from "./component/footerComponent/Footer";
 
 function App() {
   const arr = ["yuta.jpeg", "satoru.jpeg", "gojo-satoru-jjk.webp", "AnimeBg.jpeg"];
@@ -33,6 +34,9 @@ function App() {
         </GridItem>
         <GridItem colSpan={{ base: 4, md: 3, xl: 3 }} mx={3}>
           <Main img={arr} />
+        </GridItem>
+        <GridItem colSpan={{ base: 4 }}>
+          <Footer />
         </GridItem>
       </Grid>
     </>
