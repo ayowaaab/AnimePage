@@ -10,6 +10,7 @@ import {
   HStack,
   Show,
   Tab,
+  Skeleton,
 } from "@chakra-ui/react";
 
 import { useState, useEffect } from "react";
@@ -29,12 +30,22 @@ interface fetchGenreResponse {
 function AllArticles() {
   const [genre, setGenre] = useState<Genre[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
   useEffect(() => {
+    const controler = new AbortController();
+    setLoading(true)
     apiClient
       .get<fetchGenreResponse>("/genres")
-      .then((res) => setGenre(res.data.results))
-      .catch((err) => setError(err.message));
-  });
+      .then((res) => {
+        setGenre(res.data.results);
+        setLoading(false)
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false)
+      });
+      return () => controler.abort();
+  },[]);
   const tabNum = Math.ceil(genre.length / 4);
 
   return (
@@ -47,7 +58,9 @@ function AllArticles() {
             </Alert>
           )}
           {genre.map((el) => (
+            <Skeleton isLoaded={isLoading} width={3}>
             <Article key={el.id} heading={el.name} img={el.image_background} />
+            </Skeleton>
           ))}
         </Show>
         <Show below="md">
@@ -58,7 +71,11 @@ function AllArticles() {
                   <TabPanel>
                     <HStack justify={"center"}>
                       {genre.slice(i * 4, (i + 1) * 4).map((element) => (
-                        <Article key={element.id} heading={element.name} img={element.image_background} />
+                        <Article
+                          key={element.id}
+                          heading={element.name}
+                          img={element.image_background}
+                        />
                       ))}
                     </HStack>
                   </TabPanel>

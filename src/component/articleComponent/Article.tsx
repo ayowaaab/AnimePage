@@ -15,6 +15,7 @@ function Article({ heading, img }: Props) {
   return (
     <>
       <Show above="md">
+        
         <HStack cursor={"pointer"}>
           <Image borderRadius={6} objectFit={"cover"} w={50} h={50} src={img} />
           <Text

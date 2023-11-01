@@ -1,4 +1,4 @@
-import { ViewIcon } from "@chakra-ui/icons";
+// import { ViewIcon } from "@chakra-ui/icons";
 import {
   Card,
   Image,
@@ -6,51 +6,43 @@ import {
   Heading,
   CardBody,
   CardFooter,
-  Text,
   Stack,
+  ButtonGroup,
+  Divider,
 } from "@chakra-ui/react";
 
-interface Props{
-  img:string
+interface Props {
+  img: string;
+  title: string;
 }
 
-function AnimeCard({img}:Props) {
+function AnimeCard({ img,title }: Props) {
   return (
     <>
-      <Card
-        direction={{ base: "column", sm: "row" }}
-        overflow="hidden"
-        variant="outline"
-        shadow={"md"}
-        _hover={{transform:'scale(1.02)'}}
-        transition={'.3s'}
-      >
-        <Image
-          objectFit="cover"
-          w={{base:"100%",md:"200px",xl:"250px"}}
-          h={{base:"250px",md:"200px",xl:"250px"}}
-          src={ "img/" + img}
-          alt="Caffe Latte"
-        />
-
-        <Stack>
-          <CardBody>
-            <Heading size="md">The perfect latte</Heading>
-
-            <Text py="2">
-              Caffè latte is a coffee beverage of Italian origin made with
-              espresso and steamed milk.
-            </Text>
+      <Stack align={"center"} >
+        <Card boxShadow={'0 0px 15px rgba(0, 0, 0, 0.2)'} px={3} maxW="xs" _hover={{transform:'scale(1.05)',cursor:'pointer'}} transition={'.3s'}>
+          <CardBody p={3}>
+            <Image
+              src={"img/" + img}
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+              objectFit={"cover"}
+              h={'xs'}
+            />
+            <Stack my={3} justifyContent={"center"} align={"center"}>
+              <Heading size="md">{title}</Heading>
+            </Stack>
           </CardBody>
-
-          <CardFooter>
-            <Button colorScheme="blue" width={"200px"} m={{base:'0 auto',md:'auto 0',xl:'auto 0'}} rightIcon={<ViewIcon />}>
-              Watch
-            </Button>
+          <Divider />
+          <CardFooter justifyContent={"center"} py={2}>
+            <ButtonGroup>
+              <Button px={10} colorScheme="blue">
+                Watch
+              </Button>
+            </ButtonGroup>
           </CardFooter>
-        </Stack>
-        
-      </Card>
+        </Card>
+      </Stack>
     </>
   );
 }

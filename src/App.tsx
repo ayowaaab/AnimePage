@@ -17,14 +17,21 @@ function App() {
     "gojo-satoru-jjk.webp",
     "AnimeBg.jpeg",
   ];
-
+  
+  const headerArr = [
+    "Yuta Okkotsu",
+    "Gojo Satoru",
+    "The Strongest",
+    "Anime Background",
+  ];
+  
   return (
     <>
       <Grid templateColumns={"repeat(4, 1fr)"} gap={5}>
         <GridItem colSpan={{ base: 4 }}>
           <Nav />
         </GridItem>
-        <GridItem colSpan={{ base: 4, md: 1, xl: 1 }}>
+        <GridItem colSpan={{ base: 4, md: 1, xl: 1 }} my={5}>
           <Heading
             px={5}
             textAlign={{ base: "center", md: "start", xl: "start" }}
@@ -40,8 +47,8 @@ function App() {
             <AllArticles />
           </Flex>
         </GridItem>
-        <GridItem colSpan={{ base: 4, md: 3, xl: 3 }} mx={3}>
-          <Main img={mainArr} />
+        <GridItem colSpan={{ base: 4, md: 3, xl: 3 }} mx={3} my={5}>
+          <Main header={headerArr} img={mainArr} />
         </GridItem>
         <GridItem colSpan={{ base: 4 }}>
           <Footer />
