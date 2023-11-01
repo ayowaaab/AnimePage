@@ -1,6 +1,8 @@
-import { Grid, Heading, Link, Stack, GridItem, Image, HStack, } from "@chakra-ui/react";
+import { Grid, Heading, Link, Stack, GridItem, Image, HStack, useColorMode, } from "@chakra-ui/react";
 import logo from '../../assets/Logo.svg'
 function Footer() {
+  const { colorMode } = useColorMode();
+
   return (
     <>
   
@@ -8,8 +10,16 @@ function Footer() {
 
       <GridItem justifySelf={{base:'center',md:'center',xl:'start'}} colSpan={{base : 1 , md:3, xl:2}} >
         <HStack>
-        <Image src={logo} w={'100px'}  />
-        <Heading size={'lg'} color={'green.700'} display={{base:"none",md:'none',xl:'block'}}>HopeFoundation</Heading>
+        <Image
+           filter={
+            colorMode === 'dark'
+              ? "invert(40%) sepia(61%) saturate(2269%) hue-rotate(165deg) brightness(101%) contrast(101%)"
+              : ""
+          }
+        src={logo} w={'100px'}  />
+        <Heading 
+          color={colorMode === 'dark' ? "cyan.400" : "green.700"}
+        size={'lg'} display={{base:"none",md:'none',xl:'block'}}>HopeFoundation</Heading>
         </HStack>
      
       </GridItem>
