@@ -19,11 +19,11 @@ interface Props {
 function AnimeCard({ img, title }: Props) {
   return (
     <>
-      <Stack align={"center"}>
+      <Stack align={"center"} w={"full"}>
         <Card
           boxShadow={"0 0px 15px rgba(0, 0, 0, 0.2)"}
           px={3}
-          minW={"xs"}
+          w={'full'}
           _hover={{ transform: "scale(1.05)" }}
           transition={".3s"}
         >
@@ -38,7 +38,7 @@ function AnimeCard({ img, title }: Props) {
               />
             </Stack>
             <Stack my={3} justifyContent={"center"} align={"center"}>
-              <Heading maxW={"full"} textAlign={"center"} size="sm">
+              <Heading textAlign={"center"} size="sm">
                 {title}
               </Heading>
             </Stack>

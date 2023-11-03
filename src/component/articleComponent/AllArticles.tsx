@@ -53,7 +53,6 @@ function AllArticles() {
       });
     return () => controler.abort();
   }, []);
- 
   const searchGenre = (val:string) =>{
     setGenre(
       originalGenre.filter(
@@ -61,7 +60,8 @@ function AllArticles() {
       )
     )
   }
-  const tabNum = Math.ceil(genre.length / 6);
+  
+  const tabNum = Math.ceil(genre.length / 4);
 
 
 
@@ -83,7 +83,7 @@ function AllArticles() {
               </Skeleton>
             ))}
 
-          {genre.map((el) => (
+          {genre.slice(0,20).map((el) => (
             <Article key={el.mal_id} heading={el.name} />
           ))}
          
@@ -95,7 +95,7 @@ function AllArticles() {
                 {Array.from({ length: tabNum }, (_, i) => (
                   <TabPanel key={i}>
                     <HStack justify={"center"}>
-                      {genre.slice(i * 6, (i + 1) * 6).map((element) => (
+                      {genre.slice(i * 4, (i + 1) * 4).map((element) => (
                         <Article key={element.mal_id} heading={element.name} />
                       ))}
                     </HStack>
@@ -103,7 +103,7 @@ function AllArticles() {
                 ))}
               </TabPanels>
               <TabList>
-                {Array.from({ length: tabNum }, (_, i) => (
+                {Array.from({ length: tabNum/3 }, (_, i) => (
                   <Tab key={i}>{i + 1}</Tab>
                 ))}
               </TabList>
