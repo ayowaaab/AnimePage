@@ -35,7 +35,7 @@ function AllArticles() {
     const controler = new AbortController();
     setLoading(true)
     apiClient
-      .get<fetchGenreResponse>("/genres")
+      .get<fetchGenreResponse>("/genres",{signal:controler.signal})
       .then((res) => {
         setGenre(res.data.results);
         setLoading(false)
@@ -46,6 +46,7 @@ function AllArticles() {
       });
       return () => controler.abort();
   },[]);
+  
   const tabNum = Math.ceil(genre.length / 4);
 
   return (

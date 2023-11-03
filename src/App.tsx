@@ -1,9 +1,4 @@
-import {
-  Flex,
-  Grid,
-  GridItem,
-  Heading,
-} from "@chakra-ui/react";
+import { Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
 import Nav from "./component/navComponent/Nav";
 import Main from "./component/mainComponent/Main";
 import "./App.css";
@@ -12,19 +7,24 @@ import AllArticles from "./component/articleComponent/AllArticles";
 
 function App() {
   const mainArr = [
-    "yuta.jpeg",
-    "satoru.jpeg",
-    "gojo-satoru-jjk.webp",
-    "AnimeBg.jpeg",
+    {
+      title: "Yuta Okkotsu",
+      img: "yuta.jpeg",
+    },
+    {
+      title: "Gojo Satoru",
+      img: "satoru.jpeg",
+    },
+    {
+      title: "Anime Background",
+      img: "AnimeBg.jpeg",
+    },
+    {
+      title: "The Strongest",
+      img: "gojo-satoru-jjk.webp",
+    },
   ];
-  
-  const headerArr = [
-    "Yuta Okkotsu",
-    "Gojo Satoru",
-    "The Strongest",
-    "Anime Background",
-  ];
-  
+
   return (
     <>
       <Grid templateColumns={"repeat(4, 1fr)"} gap={5}>
@@ -48,7 +48,7 @@ function App() {
           </Flex>
         </GridItem>
         <GridItem colSpan={{ base: 4, md: 3, xl: 3 }} mx={3} my={5}>
-          <Main header={headerArr} img={mainArr} />
+          <Main content={mainArr} />
         </GridItem>
         <GridItem colSpan={{ base: 4 }}>
           <Footer />

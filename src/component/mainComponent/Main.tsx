@@ -1,29 +1,35 @@
 import { Grid, Input } from "@chakra-ui/react";
 import AnimeCard from "./AnimeCard";
-import { ChangeEvent } from "react";
-interface Props {
-  img: string[];
-  header: string[];
+import { useState } from "react";
+
+interface Card {
+  img: string;
+  title: string;
 }
-function Main({ img, header }: Props) {
-  const handelChange = (data: ChangeEvent<HTMLInputElement>) => {
-    const value = data.target.value;
-    const cards = document.querySelectorAll(".chakra-card");
-    const titles = document.querySelectorAll(".chakra-card .chakra-heading");
+interface MainData {
+  content: Card[];
+}
 
-    cards.forEach((card , index) => {
-      const titleText = titles[index].textContent;
-      if (titleText?.toUpperCase()?.indexOf(value.toUpperCase()) != -1) {
-        (card as HTMLElement).style.display = "grid";
-      } else {
-        (card as HTMLElement).style.display = "none";
-      }
-    });
+function Main({ content }: MainData) {
+  const originalContent = content;
+  const [newContent, setNewContent] = useState(content);
+  const handelEvent = (data: string) => {
+    setNewContent(
+      originalContent.filter(
+        (c) => c.title.toUpperCase().indexOf(data.toUpperCase()) !== -1
+      )
+    );
+ 
+    
   };
-
   return (
     <>
-      <Input size={"lg"} placeholder="Search" mb={5} onChange={handelChange} />
+      <Input
+        size={"lg"}
+        placeholder="Search . . ."
+        onChange={(e) => handelEvent(e.target.value)}
+        mb={5}
+      />
       <Grid
         gap={5}
         alignContent={"center"}
@@ -34,8 +40,9 @@ function Main({ img, header }: Props) {
           xl: "repeat(3,1fr)",
         }}
       >
-        {img.map((_,i)=><AnimeCard title={header[i]} img={img[i]} />)}
-        
+        {newContent.map((item) => (
+          <AnimeCard key={item.title} title={item.title} img={item.img} />
+        ))}
       </Grid>
     </>
   );
