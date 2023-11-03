@@ -12,6 +12,7 @@ import {
   Tab,
   Skeleton,
   Text,
+  Button,
 } from "@chakra-ui/react";
 
 import { useState, useEffect } from "react";
@@ -31,13 +32,14 @@ interface fetchGenreResponse {
 function AllArticles() {
   const [genre, setGenre] = useState<Genre[]>([]);
   const [error, setError] = useState("");
+  const [showMore, setshowMore] = useState(5);
   const [isLoading, setLoading] = useState(false);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
   useEffect(() => {
     const controler = new AbortController();
     setLoading(true);
     apiClient
-      .get<fetchGenreResponse>("", { signal: controler.signal })
+      .get<fetchGenreResponse>("/genres/anime", { signal: controler.signal })
       .then((res) => {
         setGenre(res.data.data);
         setLoading(false);
@@ -52,6 +54,8 @@ function AllArticles() {
 
   const tabNum = Math.ceil(genre.length / 4);
 
+
+  
   return (
     <>
       <>
@@ -68,9 +72,10 @@ function AllArticles() {
               </Skeleton>
             ))}
 
-          {genre.map((el) => (
+          {genre.slice(0, showMore).map((el) => (
             <Article key={el.mal_id} heading={el.name} />
           ))}
+          <Button onClick={() => setshowMore(20)}>Show More</Button>
         </Show>
         <Show below="md">
           <VStack>
