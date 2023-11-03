@@ -16,22 +16,31 @@ interface Props {
   title: string;
 }
 
-function AnimeCard({ img,title }: Props) {
+function AnimeCard({ img, title }: Props) {
   return (
     <>
-      <Stack align={"center"} >
-        <Card boxShadow={'0 0px 15px rgba(0, 0, 0, 0.2)'} px={3} maxW="sm" _hover={{transform:'scale(1.05)'}} transition={'.3s'}>
+      <Stack align={"center"}>
+        <Card
+          boxShadow={"0 0px 15px rgba(0, 0, 0, 0.2)"}
+          px={3}
+          minW={"xs"}
+          _hover={{ transform: "scale(1.05)" }}
+          transition={".3s"}
+        >
           <CardBody p={3}>
-            <Image
-              src={"img/" + img}
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-              objectFit={"cover"}
-              h={'xs'}
-              w={'xs'}
-            />
+            <Stack>
+              <Image
+                src={img}
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+                objectFit={"cover"}
+                h={"xs"}
+              />
+            </Stack>
             <Stack my={3} justifyContent={"center"} align={"center"}>
-              <Heading size="md">{title}</Heading>
+              <Heading maxW={"full"} textAlign={"center"} size="sm">
+                {title}
+              </Heading>
             </Stack>
           </CardBody>
           <Divider />

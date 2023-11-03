@@ -52,12 +52,13 @@ function Contact() {
                 placeholder="First name"
               />
             </FormControl>
-            <FormControl>
+            <FormControl mt={4}>
               <FormLabel>Last name</FormLabel>
               <Input
                 name="lastName"
                 ref={initialRef}
-                placeholder="First name"
+                placeholder="Last name"
+                required={true}
               />
             </FormControl>
 
