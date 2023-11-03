@@ -1,23 +1,23 @@
 import {
   VStack,
   HStack,
-  Image,
+ 
   Text,
   Show,
 } from "@chakra-ui/react";
 
 interface Props {
   heading: string;
-  img: string;
+  // img: string;
 }
 
-function Article({ heading, img }: Props) {
+function Article({ heading }: Props) {
   return (
     <>
       <Show above="md">
         
         <HStack cursor={"pointer"}>
-          <Image borderRadius={6} objectFit={"cover"} w={50} h={50} src={img} />
+          {/* <Image borderRadius={6} objectFit={"cover"} w={50} h={50} src={img} /> */}
           <Text
             _hover={{ textDecoration: "underline" }}
             fontSize={{ base: "sm", md: "xl", xl: "xl" }}
@@ -28,7 +28,7 @@ function Article({ heading, img }: Props) {
       </Show>
       <Show below="md">
         <VStack cursor={"pointer"}>
-          <Image borderRadius={6} objectFit={"cover"} w={50} h={50} src={img} />
+          {/* <Image borderRadius={6} objectFit={"cover"} w={50} h={50} src={img} /> */}
           <Text
             _hover={{ textDecoration: "underline" }}
             fontSize={{ base: "sm", md: "xl", xl: "xl" }}

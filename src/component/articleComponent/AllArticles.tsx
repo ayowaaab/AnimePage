@@ -11,42 +11,45 @@ import {
   Show,
   Tab,
   Skeleton,
+  Text,
 } from "@chakra-ui/react";
 
 import { useState, useEffect } from "react";
 import apiClient from "../../services/api-client";
 import Article from "./Article";
+import { CanceledError } from "axios";
 
 interface Genre {
-  id: number;
+  mal_id: number;
   name: string;
-  image_background: string;
 }
 interface fetchGenreResponse {
   count: number;
-  results: Genre[];
+  data: Genre[];
 }
 
 function AllArticles() {
   const [genre, setGenre] = useState<Genre[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
   useEffect(() => {
     const controler = new AbortController();
-    setLoading(true)
+    setLoading(true);
     apiClient
-      .get<fetchGenreResponse>("/genres",{signal:controler.signal})
+      .get<fetchGenreResponse>("", { signal: controler.signal })
       .then((res) => {
-        setGenre(res.data.results);
-        setLoading(false)
+        setGenre(res.data.data);
+        setLoading(false);
       })
       .catch((err) => {
+        if (err instanceof CanceledError) return;
         setError(err.message);
-        setLoading(false)
+        setLoading(false);
       });
-      return () => controler.abort();
-  },[]);
-  
+    return () => controler.abort();
+  }, []);
+
   const tabNum = Math.ceil(genre.length / 4);
 
   return (
@@ -58,10 +61,15 @@ function AllArticles() {
               <AlertIcon /> <AlertTitle>{error}</AlertTitle>
             </Alert>
           )}
+          {isLoading &&
+            skeletons.map((skeleton) => (
+              <Skeleton height={5} key={skeleton}>
+                <Text></Text>
+              </Skeleton>
+            ))}
+
           {genre.map((el) => (
-            <Skeleton isLoaded={isLoading} width={3}>
-            <Article key={el.id} heading={el.name} img={el.image_background} />
-            </Skeleton>
+            <Article key={el.mal_id} heading={el.name} />
           ))}
         </Show>
         <Show below="md">
@@ -69,14 +77,10 @@ function AllArticles() {
             <Tabs isFitted align={"center"}>
               <TabPanels minW={"md"}>
                 {Array.from({ length: tabNum }, (_, i) => (
-                  <TabPanel>
+                  <TabPanel key={i}>
                     <HStack justify={"center"}>
                       {genre.slice(i * 4, (i + 1) * 4).map((element) => (
-                        <Article
-                          key={element.id}
-                          heading={element.name}
-                          img={element.image_background}
-                        />
+                        <Article key={element.mal_id} heading={element.name} />
                       ))}
                     </HStack>
                   </TabPanel>
