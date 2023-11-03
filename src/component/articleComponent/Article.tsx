@@ -4,6 +4,7 @@ import {
  
   Text,
   Show,
+  Divider,
 } from "@chakra-ui/react";
 
 interface Props {
@@ -17,7 +18,6 @@ function Article({ heading }: Props) {
       <Show above="md">
         
         <HStack cursor={"pointer"}>
-          {/* <Image borderRadius={6} objectFit={"cover"} w={50} h={50} src={img} /> */}
           <Text
             _hover={{ textDecoration: "underline" }}
             fontSize={{ base: "sm", md: "xl", xl: "xl" }}
@@ -28,7 +28,6 @@ function Article({ heading }: Props) {
       </Show>
       <Show below="md">
         <VStack cursor={"pointer"}>
-          {/* <Image borderRadius={6} objectFit={"cover"} w={50} h={50} src={img} /> */}
           <Text
             _hover={{ textDecoration: "underline" }}
             fontSize={{ base: "sm", md: "xl", xl: "xl" }}
@@ -36,6 +35,7 @@ function Article({ heading }: Props) {
             {heading}
           </Text>
         </VStack>
+        <Divider h={5} mx={1} orientation="vertical"  />
       </Show>
     </>
   );
