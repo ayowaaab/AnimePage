@@ -6,24 +6,7 @@ import Footer from "./component/footerComponent/Footer";
 import AllArticles from "./component/articleComponent/AllArticles";
 
 function App() {
-  const mainArr = [
-    {
-      title: "Yuta Okkotsu",
-      img: "yuta.jpeg",
-    },
-    {
-      title: "Gojo Satoru",
-      img: "satoru.jpeg",
-    },
-    {
-      title: "Anime Background",
-      img: "AnimeBg.jpeg",
-    },
-    {
-      title: "The Strongest",
-      img: "gojo-satoru-jjk.webp",
-    },
-  ];
+
 
   return (
     <>
@@ -48,7 +31,7 @@ function App() {
           </Flex>
         </GridItem>
         <GridItem colSpan={{ base: 4, md: 3, xl: 3 }} mx={3} my={5}>
-          <Main content={mainArr} />
+          <Main />
         </GridItem>
         <GridItem colSpan={{ base: 4 }}>
           <Footer />
