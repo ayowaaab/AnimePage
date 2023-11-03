@@ -9,14 +9,12 @@ import {
 
 interface Props {
   heading: string;
-  // img: string;
-}
+} 
 
 function Article({ heading }: Props) {
   return (
     <>
       <Show above="md">
-        
         <HStack cursor={"pointer"}>
           <Text
             _hover={{ textDecoration: "underline" }}
@@ -26,6 +24,7 @@ function Article({ heading }: Props) {
           </Text>
         </HStack>
       </Show>
+
       <Show below="md">
         <VStack cursor={"pointer"}>
           <Text

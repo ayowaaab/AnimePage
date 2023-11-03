@@ -20,7 +20,7 @@ function AnimeCard({ img,title }: Props) {
   return (
     <>
       <Stack align={"center"} >
-        <Card boxShadow={'0 0px 15px rgba(0, 0, 0, 0.2)'} px={3} maxW="sm" _hover={{transform:'scale(1.05)',cursor:'pointer'}} transition={'.3s'}>
+        <Card boxShadow={'0 0px 15px rgba(0, 0, 0, 0.2)'} px={3} maxW="sm" _hover={{transform:'scale(1.05)'}} transition={'.3s'}>
           <CardBody p={3}>
             <Image
               src={"img/" + img}
@@ -28,6 +28,7 @@ function AnimeCard({ img,title }: Props) {
               borderRadius="lg"
               objectFit={"cover"}
               h={'xs'}
+              w={'xs'}
             />
             <Stack my={3} justifyContent={"center"} align={"center"}>
               <Heading size="md">{title}</Heading>
