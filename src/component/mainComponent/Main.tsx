@@ -2,6 +2,7 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
+  Card,
   Grid,
   Input,
 } from "@chakra-ui/react";
@@ -9,6 +10,7 @@ import AnimeCard from "./AnimeCard";
 import { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import { CanceledError } from "axios";
+import AnimeCardSkeleton from "./AnimeCardSkeleton";
 
 interface urlImg {
   image_url: string;
@@ -30,6 +32,7 @@ function Main() {
   const [newContent, setNewContent] = useState<Card[]>([]);
   const [originalContent, setOriginalContent] = useState<Card[]>([]);
   const [error, seterror] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const handelEvent = (data: string) => {
     setNewContent(
       originalContent.filter(
@@ -40,14 +43,17 @@ function Main() {
 
   useEffect(() => {
     const controler = new AbortController();
+    setLoading(true);
     apiClient
       .get<FetchCardData>("/anime", { signal: controler.signal })
       .then((res) => {
+        setLoading(false);
         setNewContent(res.data.data);
         setOriginalContent(res.data.data);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
+        setLoading(false);
         seterror(err.message);
       });
     return () => controler.abort();
@@ -68,7 +74,6 @@ function Main() {
       )}
       <Grid
         gap={10}
-   
         alignContent={"center"}
         templateColumns={{
           base: "repeat(1,1fr)",
@@ -77,6 +82,8 @@ function Main() {
           xl: "repeat(3,1fr)",
         }}
       >
+        {isLoading && [1,2,3,4,5,6].map(item =><AnimeCardSkeleton key={item} />)}
+
         {newContent.map((item) => (
           <AnimeCard
             key={item.title}

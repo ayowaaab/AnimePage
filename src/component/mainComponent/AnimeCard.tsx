@@ -1,4 +1,3 @@
-// import { ViewIcon } from "@chakra-ui/icons";
 import {
   Card,
   Image,
@@ -23,7 +22,7 @@ function AnimeCard({ img, title }: Props) {
         <Card
           boxShadow={"0 0px 15px rgba(0, 0, 0, 0.2)"}
           px={3}
-          w={'full'}
+          w={"full"}
           _hover={{ transform: "scale(1.05)" }}
           transition={".3s"}
         >
