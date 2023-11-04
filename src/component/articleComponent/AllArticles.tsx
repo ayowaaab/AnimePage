@@ -2,23 +2,23 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
-  Tabs,
-  TabList,
-  TabPanels,
-  TabPanel,
-  VStack,
-  HStack,
   Show,
-  Tab,
   Skeleton,
   Text,
   Input,
+  Button,
+  Heading,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 
 import { useState, useEffect } from "react";
 import apiClient from "../../services/api-client";
 import Article from "./Article";
 import { CanceledError } from "axios";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 interface Genre {
   mal_id: number;
@@ -31,7 +31,7 @@ interface fetchGenreResponse {
 
 function AllArticles() {
   const [genre, setGenre] = useState<Genre[]>([]);
-  const [originalGenre,setOriginalGenre] = useState<Genre[]>([]);
+  const [originalGenre, setOriginalGenre] = useState<Genre[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -42,7 +42,7 @@ function AllArticles() {
     apiClient
       .get<fetchGenreResponse>("/genres/anime", { signal: controler.signal })
       .then((res) => {
-        setOriginalGenre(res.data.data)
+        setOriginalGenre(res.data.data);
         setGenre(res.data.data);
         setLoading(false);
       })
@@ -53,24 +53,28 @@ function AllArticles() {
       });
     return () => controler.abort();
   }, []);
-  const searchGenre = (val:string) =>{
+  const searchGenre = (val: string) => {
     setGenre(
       originalGenre.filter(
         (g) => g.name.toUpperCase().indexOf(val.toUpperCase()) !== -1
       )
-    )
-  }
-  
-  const tabNum = Math.ceil(genre.length / 4);
+    );
+  };
 
-
-
-  
   return (
     <>
       <>
         <Show above="md">
-          <Input placeholder={"Search Here"} onChange={(e)=>searchGenre(e.target.value)} />
+          <Heading
+            px={5}
+            textAlign={{ base: "center", md: "start", xl: "start" }}
+          >
+            Genre
+          </Heading>
+          <Input
+            placeholder={"Search Here"}
+            onChange={(e) => searchGenre(e.target.value)}
+          />
           {error && (
             <Alert status="error">
               <AlertIcon /> <AlertTitle>{error}</AlertTitle>
@@ -83,32 +87,21 @@ function AllArticles() {
               </Skeleton>
             ))}
 
-          {genre.slice(0,20).map((el) => (
+          {genre.slice(0, 20).map((el) => (
             <Article key={el.mal_id} heading={el.name} />
           ))}
-         
         </Show>
         <Show below="md">
-          <VStack>
-            <Tabs isFitted align={"center"}>
-              <TabPanels minW={"md"}>
-                {Array.from({ length: tabNum }, (_, i) => (
-                  <TabPanel key={i}>
-                    <HStack justify={"center"}>
-                      {genre.slice(i * 4, (i + 1) * 4).map((element) => (
-                        <Article key={element.mal_id} heading={element.name} />
-                      ))}
-                    </HStack>
-                  </TabPanel>
-                ))}
-              </TabPanels>
-              <TabList>
-                {Array.from({ length: tabNum/3 }, (_, i) => (
-                  <Tab key={i}>{i + 1}</Tab>
-                ))}
-              </TabList>
-            </Tabs>
-          </VStack>
+          <Menu>
+            <MenuButton w={'xs'} as={Button} rightIcon={<ChevronDownIcon />}>
+              Genres
+            </MenuButton>
+            <MenuList w={'xs'} overflow={"scroll"} h={"xs"}>
+              {genre.map((element) => (
+                <MenuItem key={element.mal_id}>{element.name}</MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
         </Show>
       </>
     </>

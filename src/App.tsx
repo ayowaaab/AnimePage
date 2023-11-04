@@ -1,4 +1,4 @@
-import { Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import Nav from "./component/navComponent/Nav";
 import Main from "./component/mainComponent/Main";
 import "./App.css";
@@ -15,12 +15,7 @@ function App() {
           <Nav />
         </GridItem>
         <GridItem colSpan={{ base: 4, md: 1, xl: 1 }} my={5}>
-          <Heading
-            px={5}
-            textAlign={{ base: "center", md: "start", xl: "start" }}
-          >
-            Genre
-          </Heading>
+      
           <Flex
             flexDirection={{ base: "row", md: "column", xl: "column" }}
             justifyContent={{ base: "center", md: "start", xl: "start" }}

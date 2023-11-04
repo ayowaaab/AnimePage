@@ -3,7 +3,6 @@ import {
   HStack,
   Image,
   Stack,
-  useBoolean,
   useColorMode,
   Icon,
   Text,
@@ -25,13 +24,10 @@ import { FaFacebook, FaGithub, FaInstagram } from "react-icons/fa";
 import Contact from "./Contact";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
-
-
 function Nav() {
-  const { toggleColorMode,colorMode } = useColorMode();
-  const [flag, setFlag] = useBoolean(false);
+  const { toggleColorMode, colorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  
+
   return (
     <>
       <Show above="md">
@@ -47,7 +43,7 @@ function Nav() {
             <HStack>
               <Image
                 filter={
-                  colorMode === 'dark'
+                  colorMode === "dark"
                     ? "invert(40%) sepia(61%) saturate(2269%) hue-rotate(165deg) brightness(101%) contrast(101%)"
                     : ""
                 }
@@ -57,7 +53,7 @@ function Nav() {
               <Text
                 fontSize={"2xl"}
                 as={"b"}
-                color={colorMode === 'dark' ? "cyan.400" : "green.700"}
+                color={colorMode === "dark" ? "cyan.400" : "green.700"}
               >
                 Hope
               </Text>
@@ -99,11 +95,10 @@ function Nav() {
             <HStack>
               <Button
                 onClick={() => {
-                  setFlag.toggle();
                   toggleColorMode();
                 }}
               >
-                {flag ? <MoonIcon /> : <SunIcon />}
+                {colorMode !== "dark" ? <MoonIcon /> : <SunIcon />}
               </Button>
             </HStack>
           </HStack>
@@ -113,7 +108,7 @@ function Nav() {
 
       <Show below="md">
         <HStack justifyContent={"space-between"}>
-          <Button size={'lg'} onClick={onOpen} borderRadius={'0 0 15px 0'}>
+          <Button size={"lg"} onClick={onOpen} borderRadius={"0 0 15px 0"}>
             <HamburgerIcon />
           </Button>
           <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
@@ -125,14 +120,16 @@ function Nav() {
                 <HStack>
                   <Image
                     filter={
-                      colorMode === 'dark'
+                      colorMode === "dark"
                         ? "invert(40%) sepia(61%) saturate(2269%) hue-rotate(165deg) brightness(101%) contrast(101%)"
                         : ""
                     }
                     src={logo}
                     w={"50px"}
                   />
-                  <Text color={colorMode === 'dark' ? "cyan.400" : "green.700"}>Hope</Text>
+                  <Text color={colorMode === "dark" ? "cyan.400" : "green.700"}>
+                    Hope
+                  </Text>
                 </HStack>
               </DrawerHeader>
 
@@ -157,7 +154,11 @@ function Nav() {
                 >
                   <Link
                     opacity={".5"}
-                    _hover={{ opacity: "1",filter:"invert(40%) sepia(61%) saturate(2269%) hue-rotate(165deg) brightness(101%) contrast(101%)" }}
+                    _hover={{
+                      opacity: "1",
+                      filter:
+                        "invert(40%) sepia(61%) saturate(2269%) hue-rotate(165deg) brightness(101%) contrast(101%)",
+                    }}
                     target="_blank"
                     href="https://github.com/ayowaaab"
                   >
@@ -169,7 +170,12 @@ function Nav() {
                     target="_blank"
                     href="https://www.facebook.com/ayoub.dahmen.87"
                   >
-                    <Icon cursor={"pointer"} as={FaFacebook} boxSize={7} className="faicon" />
+                    <Icon
+                      cursor={"pointer"}
+                      as={FaFacebook}
+                      boxSize={7}
+                      className="faicon"
+                    />
                   </Link>
                   <Link
                     opacity={".5"}
@@ -185,13 +191,12 @@ function Nav() {
           </Drawer>
           <Button
             size={"lg"}
-            borderRadius={'0 0 0 15px'}
+            borderRadius={"0 0 0 15px"}
             onClick={() => {
-              setFlag.toggle();
               toggleColorMode();
             }}
           >
-            {colorMode === 'dark' ? <MoonIcon /> : <SunIcon />}
+            {colorMode !== "dark" ? <MoonIcon /> : <SunIcon />}
           </Button>
         </HStack>
       </Show>
