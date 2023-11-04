@@ -14,55 +14,25 @@ import {
   MenuItem,
 } from "@chakra-ui/react";
 
-import { useState, useEffect } from "react";
-import apiClient from "../../services/api-client";
 import Article from "./Article";
-import { CanceledError } from "axios";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-
-interface Genre {
-  mal_id: number;
-  name: string;
-}
-interface fetchGenreResponse {
-  count: number;
-  data: Genre[];
-}
+import useGenre from "../../hooks/useGenre";
 
 function AllArticles() {
-  const [genre, setGenre] = useState<Genre[]>([]);
-  const [originalGenre, setOriginalGenre] = useState<Genre[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const {data,error,isLoading,originalData,setData} =useGenre();
+  
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
-
-  useEffect(() => {
-    const controler = new AbortController();
-    setLoading(true);
-    apiClient
-      .get<fetchGenreResponse>("/genres/anime", { signal: controler.signal })
-      .then((res) => {
-        setOriginalGenre(res.data.data);
-        setGenre(res.data.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-        setLoading(false);
-      });
-    return () => controler.abort();
-  }, []);
+  
   const searchGenre = (val: string) => {
-    setGenre(
-      originalGenre.filter(
+    setData(
+      originalData.filter(
         (g) => g.name.toUpperCase().indexOf(val.toUpperCase()) !== -1
       )
     );
   };
 
   return (
-    <>
+   
       <>
         <Show above="md">
           <Heading
@@ -87,23 +57,23 @@ function AllArticles() {
               </Skeleton>
             ))}
 
-          {genre.slice(0, 20).map((el) => (
+          {data.slice(0, 20).map((el) => (
             <Article key={el.mal_id} heading={el.name} />
           ))}
         </Show>
         <Show below="md">
           <Menu>
-            <MenuButton w={'xs'} as={Button} rightIcon={<ChevronDownIcon />}>
+            <MenuButton w={"xs"} as={Button} rightIcon={<ChevronDownIcon />}>
               Genres
             </MenuButton>
-            <MenuList w={'xs'} overflow={"scroll"} h={"xs"}>
-              {genre.map((element) => (
+            <MenuList w={"xs"} overflow={"scroll"} h={"xs"}>
+              {data.map((element) => (
                 <MenuItem key={element.mal_id}>{element.name}</MenuItem>
               ))}
             </MenuList>
           </Menu>
         </Show>
-      </>
+  
     </>
   );
 }

@@ -1,63 +1,18 @@
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  Card,
-  Grid,
-  Input,
-} from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle, Grid, Input } from "@chakra-ui/react";
 import AnimeCard from "./AnimeCard";
-import { useEffect, useState } from "react";
-import apiClient from "../../services/api-client";
-import { CanceledError } from "axios";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
-
-interface urlImg {
-  image_url: string;
-}
-interface Detail {
-  jpg: urlImg;
-  png: urlImg;
-}
-interface Card {
-  mal_id: number;
-  images: Detail;
-  title: string;
-}
-interface FetchCardData {
-  data: Card[];
-}
+import useCards from "../../hooks/useCard";
 
 function Main() {
-  const [newContent, setNewContent] = useState<Card[]>([]);
-  const [originalContent, setOriginalContent] = useState<Card[]>([]);
-  const [error, seterror] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const { error, isLoading, data, originalData, setData } = useCards();
+
   const handelEvent = (data: string) => {
-    setNewContent(
-      originalContent.filter(
+    setData(
+      originalData.filter(
         (c) => c.title.toUpperCase().indexOf(data.toUpperCase()) !== -1
       )
     );
   };
-
-  useEffect(() => {
-    const controler = new AbortController();
-    setLoading(true);
-    apiClient
-      .get<FetchCardData>("/anime", { signal: controler.signal })
-      .then((res) => {
-        setLoading(false);
-        setNewContent(res.data.data);
-        setOriginalContent(res.data.data);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setLoading(false);
-        seterror(err.message);
-      });
-    return () => controler.abort();
-  }, []);
 
   return (
     <>
@@ -82,9 +37,10 @@ function Main() {
           xl: "repeat(3,1fr)",
         }}
       >
-        {isLoading && [1,2,3,4,5,6].map(item =><AnimeCardSkeleton key={item} />)}
+        {isLoading &&
+          [1, 2, 3, 4, 5, 6].map((item) => <AnimeCardSkeleton key={item} />)}
 
-        {newContent.map((item) => (
+        {data.map((item) => (
           <AnimeCard
             key={item.title}
             title={item.title}
