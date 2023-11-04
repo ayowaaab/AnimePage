@@ -1,3 +1,4 @@
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Card,
   Image,
@@ -22,7 +23,6 @@ function AnimeCard({ img, title }: Props) {
         <Card
           boxShadow={"0 0px 15px rgba(0, 0, 0, 0.2)"}
           px={3}
-          w={"full"}
           _hover={{ transform: "scale(1.05)" }}
           transition={".3s"}
         >
@@ -33,7 +33,7 @@ function AnimeCard({ img, title }: Props) {
                 alt="Green double couch with wooden legs"
                 borderRadius="lg"
                 objectFit={"cover"}
-                h={"xs"}
+                h={'xs'}
               />
             </Stack>
             <Stack my={3} justifyContent={"center"} align={"center"}>
@@ -46,7 +46,10 @@ function AnimeCard({ img, title }: Props) {
           <CardFooter justifyContent={"center"} py={2}>
             <ButtonGroup>
               <Button px={10} colorScheme="blue">
-                Watch
+                Watch 
+              </Button>
+              <Button borderRadius={"full"} p={0} colorScheme="telegram">
+                <AddIcon />
               </Button>
             </ButtonGroup>
           </CardFooter>

@@ -31,7 +31,7 @@ const useData = <T>(endpoint: string) => {
       });
     return () => controler.abort();
   }, [endpoint]);
+
   return { data, originalData, error, isLoading, setData };
-  
 };
 export default useData;

@@ -23,6 +23,7 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { FaFacebook, FaGithub, FaInstagram } from "react-icons/fa";
 import Contact from "./Contact";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import AllArticles from "../articleComponent/AllArticles";
 
 function Nav() {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -87,9 +88,9 @@ function Nav() {
           </HStack>
           <HStack gap={{ base: 2, md: 2, xl: 10 }}>
             <HStack>
-              <Button>Anime</Button>
+              <AllArticles />
               <Button>Manga</Button>
-              <Button>Products</Button>
+              <Button>Anime</Button>
               <Contact />
             </HStack>
             <HStack>

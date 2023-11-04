@@ -38,13 +38,14 @@ function Contact() {
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
+        blockScrollOnMount={false}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent minW={{md:'xl',xl:'3xl'}}>
           <ModalHeader>Contact</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>First name</FormLabel>
               <Input
                 name="firstName"
@@ -52,7 +53,7 @@ function Contact() {
                 placeholder="First name"
               />
             </FormControl>
-            <FormControl mt={4}>
+            <FormControl isRequired mt={4}>
               <FormLabel>Last name</FormLabel>
               <Input
                 name="lastName"
@@ -62,7 +63,7 @@ function Contact() {
               />
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl isRequired mt={4}>
               <FormLabel>Email</FormLabel>
               <Input name="email" placeholder="Email" />
             </FormControl>
